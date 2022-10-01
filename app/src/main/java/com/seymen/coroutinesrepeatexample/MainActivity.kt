@@ -3,10 +3,7 @@ package com.seymen.coroutinesrepeatexample
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,7 +30,22 @@ class MainActivity : AppCompatActivity() {
                 loopMain()
             }
         }
+
+       /*while (true){
+            CoroutineScope(Dispatchers.IO).launch {
+                val answer = doNetworkCall()
+
+                withContext(Dispatchers.Main){
+                    Log.v("PATIKA",answer)
+                }
+            }
+        }*/
+
     }
+    /*suspend fun doNetworkCall():String {
+       delay(1000L)
+       return "Network Answer Called "
+   }*/
 
     /**
      * suspend fun running in default thread. 1 sec delayed for see to easily see in the log records.
@@ -43,7 +55,7 @@ class MainActivity : AppCompatActivity() {
     private suspend fun loopDefault(): Int {
         i++
         delay(1000L)
-        return Log.v("LOOP1", "Default Counter: $i")
+        return Log.v("LOOP_Default", "Default Counter: $i")
     }
 
     /**
@@ -55,6 +67,8 @@ class MainActivity : AppCompatActivity() {
     private suspend fun loopMain(): Int {
         j++
         delay(2000L)
-        return Log.v("LOOP2", "Main Counter: $j")
+        return Log.v("LOOP_Main", "Main Counter: $j")
     }
+
+
 }
