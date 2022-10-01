@@ -65,10 +65,8 @@ class MainActivity : AppCompatActivity() {
      * @return i record on log
      */
     private suspend fun loopMain(): Int {
-        j++
-        delay(2000L)
+        j+=10
+        delay(1000L)
         return Log.v("LOOP_Main", "Main Counter: $j")
     }
-
-
 }
